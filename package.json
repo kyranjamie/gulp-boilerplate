@@ -21,6 +21,7 @@
     "gulp-uglify": "~0.2.0",
     "express": "~3.4.8",
     "connect-livereload": "~0.3.2",
-    "tiny-lr": "0.0.5"
+    "tiny-lr": "0.0.5",
+    "gulp-csso": "~0.2.3"
   }
 }

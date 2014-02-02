@@ -3,6 +3,7 @@
  */
 var gulp   = require('gulp'),
 sass       = require('gulp-ruby-sass'),
+csso       = require('gulp-csso'),
 watch      = require('gulp-watch'),
 uglify     = require('gulp-uglify'),
 express    = require('express'),
@@ -40,6 +41,7 @@ server.use(livereload({
 }));
 server.use(express.static('./dist'));
 
+
 /**
  *  Tasks 
  */
@@ -54,6 +56,7 @@ gulp.task('scripts', function() {
 gulp.task('styles', function () {
   gulp.src('src/scss/styles.scss')
   .pipe(sass({unixNewlines: true}))
+  .pipe(csso())
   .pipe(gulp.dest('dist/resources/'))
   .pipe(refresh(lrserver));
 });
