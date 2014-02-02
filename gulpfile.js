@@ -54,7 +54,7 @@ gulp.task('scripts', function() {
    .pipe(gulp.dest('dist/resources/'));
 });
 
-// SASS
+// Styles
 gulp.task('styles', function () {
   gulp.src('src/scss/styles.scss')
   .pipe(sass({unixNewlines: true}))
@@ -85,4 +85,10 @@ gulp.task('serve', function () {
   lrserver.listen(config.lrport);
 });
 
-gulp.task('default', ['html','scripts','styles','serve','watch']);
+gulp.task('default', [
+  'html',
+  'scripts',
+  'styles',
+  'serve',
+  'watch'
+]);
