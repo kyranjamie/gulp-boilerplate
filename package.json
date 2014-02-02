@@ -1,0 +1,26 @@
+{
+  "name": "ui-elements",
+  "version": "0.0.1",
+  "description": "Minimal project template",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyranjamie/ui-elements.git"
+  },
+  "author": "Kyran Burraston",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyranjamie/ui-elements/issues"
+  },
+  "homepage": "https://github.com/kyranjamie/ui-elements",
+  "devDependencies": {
+    "gulp": "~3.5.0",
+    "gulp-ruby-sass": "~0.2.0",
+    "gulp-watch": "~0.5.0",
+    "gulp-livereload": "~0.3.1",
+    "gulp-uglify": "~0.2.0",
+    "express": "~3.4.8",
+    "connect-livereload": "~0.3.2",
+    "tiny-lr": "0.0.5"
+  }
+}
