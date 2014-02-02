@@ -6,7 +6,7 @@ sass       = require('gulp-ruby-sass'),
 csso       = require('gulp-csso'),
 prefix     = require('gulp-autoprefixer'),
 watch      = require('gulp-watch'),
-minifyHTML = require('gulp-minify-html'),
+htmlmin    = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
 refresh    = require('gulp-livereload'),
 express    = require('express'),
@@ -67,7 +67,7 @@ gulp.task('styles', function () {
 // Markup
 gulp.task('html', function(){
   gulp.src(paths.markup)
-    .pipe(minifyHTML())
+    .pipe(htmlmin())
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
 });
