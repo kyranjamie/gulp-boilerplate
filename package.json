@@ -22,6 +22,8 @@
     "express": "~3.4.8",
     "connect-livereload": "~0.3.2",
     "tiny-lr": "0.0.5",
-    "gulp-csso": "~0.2.3"
+    "gulp-csso": "~0.2.3",
+    "gulp-minify-html": "~0.1.0",
+    "gulp-autoprefixer": "0.0.6"
   }
 }

@@ -4,10 +4,12 @@
 var gulp   = require('gulp'),
 sass       = require('gulp-ruby-sass'),
 csso       = require('gulp-csso'),
+prefix     = require('gulp-autoprefixer'),
 watch      = require('gulp-watch'),
+minifyHTML = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
-express    = require('express'),
 refresh    = require('gulp-livereload'),
+express    = require('express'),
 lrserver   = require('tiny-lr')(),
 livereload = require('connect-livereload');
 
@@ -56,6 +58,7 @@ gulp.task('scripts', function() {
 gulp.task('styles', function () {
   gulp.src('src/scss/styles.scss')
   .pipe(sass({unixNewlines: true}))
+  .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
   .pipe(csso())
   .pipe(gulp.dest('dist/resources/'))
   .pipe(refresh(lrserver));
@@ -64,6 +67,7 @@ gulp.task('styles', function () {
 // Markup
 gulp.task('html', function(){
   gulp.src(paths.markup)
+    .pipe(minifyHTML())
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
 });
@@ -73,13 +77,11 @@ gulp.task('watch', function () {
   gulp.watch(paths.markup, ['html']);
   gulp.watch(paths.styles, ['styles']);
   gulp.watch(paths.scripts, ['scripts']);
-  // gulp.watch(paths.images, ['images']);
 });
 
+// Serve
 gulp.task('serve', function () {
-  //Set up your static fileserver, which serves files in the build dir
   server.listen(config.serverport);
-  //Set up your livereload server
   lrserver.listen(config.lrport);
 });
 
