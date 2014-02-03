@@ -1,5 +1,7 @@
 Gulp template
-==================
+======================
+
+Minimal web project boilerplate 
 
 - Uglify
 - SASS, CSSO, autoprefixr
