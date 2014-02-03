@@ -51,7 +51,8 @@ server.use(express.static('./dist'));
 gulp.task('scripts', function() {
  return gulp.src(paths.scripts)
    .pipe(uglify())
-   .pipe(gulp.dest('dist/resources/'));
+   .pipe(gulp.dest('dist/resources/'))
+   .pipe(refresh(lrserver));
 });
 
 // Styles
