@@ -18,7 +18,7 @@ livereload = require('connect-livereload');
  *  Config
  */
 var config = {
-  lrport : 35729,
+  lrport : Math.floor(Math.random()*(35999-35300+1)+35300),
   serverport : 4000
 }
 
