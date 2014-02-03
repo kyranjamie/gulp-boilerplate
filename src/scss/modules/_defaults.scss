@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 0;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  position: relative;
+  color: #444;
+  background: $ui;
+  font: 300 13px/1.6 'Helvetica Neue', Helvetica, Arial;
+}
+img {
+  vertical-align: bottom;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #444;
+}
+input,
+textarea,
+button {
+  outline: 0;
+}
+.no-select {
+  user-select: none;
+}
+.text-select {
+  user-select:text;
+}

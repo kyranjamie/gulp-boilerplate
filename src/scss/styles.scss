@@ -1,2 +1,41 @@
-@import 'modules/main.scss';
-@import 'modules/normalize.scss';
+//
+// Mixins
+@import 'mixins/_position';
+
+//
+// Config modules
+@import 'modules/_vars';
+
+//
+// Objects & Modules
+@import 'vendor/_normalize';
+@import 'modules/_alerts';
+@import 'modules/_overlays';
+@import 'modules/_tooltips';
+@import 'modules/_defaults';
+@import 'modules/_checkboxes';
+@import 'modules/_grid';
+@import 'modules/_buttons';
+@import 'modules/_inputs';
+@import 'modules/_lists';
+@import 'modules/_typography';
+@import 'modules/_tables';
+@import 'modules/_misc';
+@import 'modules/_breakpoints';
+@import 'modules/_print';
+
+//
+// Partials
+@import 'partials/_header';
+@import 'partials/_nav';
+@import 'partials/_sidebar';
+@import 'partials/_main';
+@import 'partials/_footer';
+
+//
+// View specific
+@import 'views/_home';
+
+//
+// Plugins, copy / paste
+@import 'vendor/_external';
