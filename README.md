@@ -8,4 +8,3 @@ Minimal web project boilerplate
 - HTML min
 - HTTP Server (express)
 - Livereload
-
