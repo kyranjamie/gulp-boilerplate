@@ -3,16 +3,16 @@
  *  https://github.com/necolas/griddle
  * ----------------------------------------- */
 
+
 $grid-direction: left !default;
 $grid-gutter   : 20px !default; // can be px, em, or %
 
 .grid {
     display: block;
     padding: 0;
-    // margin: 0 -0.5 * -$grid-gutter; /* 1 */
-    text-align: $grid-direction; /* 2 */
-    letter-spacing: -0.31em; /* 3 */
-    text-rendering: optimizespeed; /* 4 */
+    text-align: $grid-direction;
+    letter-spacing: -0.31em;
+    text-rendering: optimizespeed;
 }
 
 .opera:-o-prefocus,
@@ -75,7 +75,7 @@ $grid-gutter   : 20px !default; // can be px, em, or %
 }
 
 /*
- *
+ *    Create grid
  */
 
 @include griddle-build(2 3 4 6 8 10 12);
