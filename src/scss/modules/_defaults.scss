@@ -1,8 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', Helvetica, Arial;
-  margin: 0;
-  padding: 0;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -13,11 +10,7 @@ html {
 body {
   position: relative;
   color: #444;
-  background: $ui;
   font: 300 13px/1.6 'Helvetica Neue', Helvetica, Arial;
-}
-img {
-  vertical-align: bottom;
 }
 ul,
 ol {
@@ -25,93 +18,54 @@ ol {
   padding: 0;
   list-style: none;
 }
-a {
-  text-decoration: none;
-  color: #444;
-}
+
 input,
 textarea,
 button {
   outline: 0;
 }
+
 .no-select {
   user-select: none;
 }
+
 .text-select {
-  user-select:text;
+  user-select: text;
 }
-
-
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
-}
-
-// body {
-//     background:red;
-// }
-
-html {
-    font-size: 1em;
-    line-height: 1.4;
-}
-
-
-/*
- * Remove the gap between images, videos, audio and canvas and the bottom of
- * their containers: h5bp.com/i/440
- */
 
 audio,
 canvas,
 img,
 video {
-    vertical-align: middle;
+  vertical-align: middle;
 }
-
-/*
- * Remove default fieldset styles.
- */
 
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
-
-/*
- * Allow only vertical resizing of textareas.
- */
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
-
 .ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  *text-indent: -9999px;
 }
 
 .ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%;
 }
 
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
-
 .hidden {
-    display: none !important;
-    visibility: hidden;
+  display: none !important;
+  visibility: hidden;
 }
 

@@ -2,14 +2,15 @@
 // Mixins
 @import 'mixins/_position';
 @import 'mixins/_griddle-build';
+@import 'mixins/_colours';
 
 //
 // Config modules
 @import 'modules/_vars';
+@import 'vendor/_normalize';
 
 //
 // Objects & Modules
-@import 'vendor/_normalize';
 @import 'modules/_alerts';
 @import 'modules/_overlays';
 @import 'modules/_tooltips';
@@ -40,3 +41,4 @@
 //
 // Plugins, copy / paste
 @import 'vendor/_external';
+
