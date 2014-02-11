@@ -6,6 +6,7 @@ sass       = require('gulp-ruby-sass'),
 csso       = require('gulp-csso'),
 prefix     = require('gulp-autoprefixer'),
 watch      = require('gulp-watch'),
+plumber    = require('gulp-plumber'),
 htmlmin    = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
 refresh    = require('gulp-livereload'),
@@ -58,9 +59,10 @@ gulp.task('scripts', function() {
 // Styles
 gulp.task('styles', function () {
   gulp.src('src/scss/styles.scss')
+  .pipe(plumber())
   .pipe(sass({unixNewlines: true}))
   .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-  .pipe(csso())
+  // .pipe(csso())
   .pipe(gulp.dest('dist/resources/'))
   .pipe(refresh(lrserver));
 });
