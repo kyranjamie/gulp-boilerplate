@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
+
+    <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- base url -->
     <base href="/resources/">
 
     <title></title>
 
+    <!-- styles / modernizr -->
     <link rel="stylesheet" href="styles.css">
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
   </head>
   <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <h2>Grid</h2>
     <section class="grid">
-      <div class="unit-5-8">
+      <div class="unit-1-1">
+        <h2>Grid</h2>
         <div class="grid">
-          <div class="unit-1-3">lorem300</div>
-          <div class="unit-1-3">lorem300</div>
-          <div class="unit-1-3">lorem300</div>
-        </div>
-      </div>
-      <div class="unit-3-8">
-        <div class="grid">
-          <div class="unit-1-4">lorem300</div>
-          <div class="unit-1-4">lorem300</div>
-          <div class="unit-1-4">lorem300</div>
-          <div class="unit-1-4">lorem300</div>
+          <div class="unit-5-8">
+            <div class="grid">
+              <div class="unit-1-3">lorem300</div>
+              <div class="unit-1-3">lorem300</div>
+              <div class="unit-1-3">lorem300</div>
+            </div>
+          </div>
+          <div class="unit-3-8">
+            <div class="grid">
+              <div class="unit-1-4">lorem300</div>
+              <div class="unit-1-4">lorem300</div>
+              <div class="unit-1-4">lorem300</div>
+              <div class="unit-1-4">lorem300</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <h2>UI Elements</h2>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <div class="grid" style="width:500px;">
+      <div class="unit-1-2">
+        <input type="text" placeholder="example" style="width:100%">
+      </div>
+      <div class="unit-1-2">
+        <input type="text" placeholder="name email" style="width:100%">
+      </div>
+    </div>
+
+
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <!-- Google Analytics -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
