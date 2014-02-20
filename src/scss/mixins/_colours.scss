@@ -1,7 +1,10 @@
-//
-//  RGBa colour values
-//
+/**
+ *  Colour usage
+ */
 
+/**
+ *  RGBa black / white
+ */
 @function black($opacity) {
   @return rgba(0,0,0,$opacity);
 };
@@ -9,3 +12,10 @@
 @function white($opacity) {
   @return rgba(255,255,255,$opacity);
 };
+
+/**
+ *  Emboss elem
+ */
+@mixin box-emboss($opacity, $opacity2){
+  box-shadow:white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}

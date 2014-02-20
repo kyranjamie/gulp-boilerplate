@@ -80,5 +80,4 @@ $grid-gutter   : 20px !default; // can be px, em, or %
 /*
  *    Create grid
  */
-
 @include griddle-build(2 3 4 6 8 10 12);
