@@ -9,6 +9,8 @@ watch      = require('gulp-watch'),
 plumber    = require('gulp-plumber'),
 htmlmin    = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
+concat     = require('gulp-concat'),
+rename     = require('gulp-rename'),
 preprocess = require('gulp-preprocess'),
 refresh    = require('gulp-livereload'),
 express    = require('express'),
@@ -30,7 +32,10 @@ var config = {
  */
 var paths = {
   markup  : 'src/**/*.html',
-  scripts : ['src/js/**/*.js', '!src/js/vendor/**'],
+  scripts : [
+    'src/js/**/*.js',
+    '!src/js/vendor/**'
+  ],
   styles  : 'src/scss/**/*.scss',
   images  : 'src/img/'
 };
@@ -53,15 +58,16 @@ server.use(express.static('./dist'));
 // Scripts: dev
 gulp.task('scripts:dev', function() {
   return gulp.src(paths.scripts)
-   .pipe(gulp.dest('dist/resources/'))
+   .pipe(gulp.dest('dist/assets/'))
    .pipe(refresh(lrserver));
 });
 
 // Scripts: prod
 gulp.task('scripts:prod', function() {
   return gulp.src(paths.scripts)
+   .pipe(concat('app.min.js'))
    .pipe(uglify())
-   .pipe(gulp.dest('dist/resources/'))
+   .pipe(gulp.dest('dist/assets/'))
    .pipe(refresh(lrserver));
 });
 
@@ -71,7 +77,7 @@ gulp.task('styles:dev', function () {
   .pipe(plumber())
   .pipe(sass({unixNewlines: true}))
   .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-  .pipe(gulp.dest('dist/resources/'))
+  .pipe(gulp.dest('dist/assets/'))
   .pipe(refresh(lrserver));
 });
 
@@ -82,7 +88,7 @@ gulp.task('styles:prod', function () {
   .pipe(sass({unixNewlines: true}))
   .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
   .pipe(csso())
-  .pipe(gulp.dest('dist/resources/'))
+  .pipe(gulp.dest('dist/assets/'))
   .pipe(refresh(lrserver));
 });
 
