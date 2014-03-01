@@ -22,6 +22,6 @@
   "globals" : {
     "jQuery": true,
     "angular": true,
-    "Modernizr": true,
+    "Modernizr": true
   }
 }
