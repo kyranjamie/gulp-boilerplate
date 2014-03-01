@@ -9,6 +9,7 @@ watch      = require('gulp-watch'),
 plumber    = require('gulp-plumber'),
 htmlmin    = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
+preprocess = require('gulp-preprocess'),
 refresh    = require('gulp-livereload'),
 express    = require('express'),
 lrserver   = require('tiny-lr')(),
@@ -48,21 +49,39 @@ server.use(express.static('./dist'));
 /**
  *  Tasks
  */
-// Scripts
-gulp.task('scripts', function() {
- return gulp.src(paths.scripts)
+
+// Scripts: dev
+gulp.task('scripts:dev', function() {
+  return gulp.src(paths.scripts)
+   .pipe(gulp.dest('dist/resources/'))
+   .pipe(refresh(lrserver));
+});
+
+// Scripts: prod
+gulp.task('scripts:prod', function() {
+  return gulp.src(paths.scripts)
    .pipe(uglify())
    .pipe(gulp.dest('dist/resources/'))
    .pipe(refresh(lrserver));
 });
 
-// Styles
-gulp.task('styles', function () {
+// Styles: dev
+gulp.task('styles:dev', function () {
   gulp.src('src/scss/styles.scss')
   .pipe(plumber())
   .pipe(sass({unixNewlines: true}))
   .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-  // .pipe(csso())
+  .pipe(gulp.dest('dist/resources/'))
+  .pipe(refresh(lrserver));
+});
+
+// Styles: prod
+gulp.task('styles:prod', function () {
+  gulp.src('src/scss/styles.scss')
+  .pipe(plumber())
+  .pipe(sass({unixNewlines: true}))
+  .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
+  .pipe(csso())
   .pipe(gulp.dest('dist/resources/'))
   .pipe(refresh(lrserver));
 });
@@ -70,7 +89,8 @@ gulp.task('styles', function () {
 // Markup
 gulp.task('html', function(){
   gulp.src(paths.markup)
-    .pipe(htmlmin())
+    // .pipe(htmlmin())
+    .pipe(preprocess({context: { dev: false }}))
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
 });
@@ -88,10 +108,24 @@ gulp.task('serve', function () {
   lrserver.listen(config.lrport);
 });
 
+/**
+ *  Tasks
+ */
+
+// Dev
 gulp.task('default', [
   'html',
-  'scripts',
-  'styles',
+  'scripts:dev',
+  'styles:dev',
+  'serve',
+  'watch'
+]);
+
+// Prod
+gulp.task('prod', [
+  'html',
+  'scripts:prod',
+  'styles:prod',
   'serve',
   'watch'
 ]);

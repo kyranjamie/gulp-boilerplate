@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
   <head>
 
     <!-- meta tags -->
@@ -54,8 +54,18 @@
     </div>
 
 
+    <!-- @if dev -->
+
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- @endif -->
+    <!-- @if !dev -->
+
+    <script src="js/plugins.min.js"></script>
+    <script src="js/app.min.js"></script>
+
+    <!-- @endif -->
 
     <!-- Google Analytics -->
     <script>
