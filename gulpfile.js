@@ -58,44 +58,52 @@ server.use(express.static('./dist'));
 // Scripts: dev
 gulp.task('scripts:dev', function() {
   return gulp.src(paths.scripts)
-   .pipe(gulp.dest('dist/assets/'))
-   .pipe(refresh(lrserver));
+    .pipe(gulp.dest('dist/assets/'))
+    .pipe(refresh(lrserver));
 });
 
 // Scripts: prod
 gulp.task('scripts:prod', function() {
   return gulp.src(paths.scripts)
-   .pipe(concat('app.min.js'))
-   .pipe(uglify())
-   .pipe(gulp.dest('dist/assets/'))
-   .pipe(refresh(lrserver));
+    .pipe(concat('app.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/assets/'))
+    .pipe(refresh(lrserver));
 });
 
 // Styles: dev
 gulp.task('styles:dev', function () {
   gulp.src('src/scss/styles.scss')
-  .pipe(plumber())
-  .pipe(sass({unixNewlines: true}))
-  .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-  .pipe(gulp.dest('dist/assets/'))
-  .pipe(refresh(lrserver));
+    .pipe(plumber())
+    .pipe(sass({unixNewlines: true}))
+    .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
+    .pipe(gulp.dest('dist/assets/'))
+    .pipe(refresh(lrserver));
 });
 
 // Styles: prod
 gulp.task('styles:prod', function () {
   gulp.src('src/scss/styles.scss')
-  .pipe(plumber())
-  .pipe(sass({unixNewlines: true}))
-  .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-  .pipe(csso())
-  .pipe(gulp.dest('dist/assets/'))
-  .pipe(refresh(lrserver));
+    .pipe(plumber())
+    .pipe(sass({unixNewlines: true}))
+    .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
+    .pipe(csso())
+    .pipe(gulp.dest('dist/assets/'))
+    .pipe(refresh(lrserver));
 });
 
-// Markup
-gulp.task('html', function(){
+// Markup: dev
+gulp.task('html:dev', function(){
   gulp.src(paths.markup)
-    // .pipe(htmlmin())
+    .pipe(preprocess({context: { dev: true }}))
+    .pipe(gulp.dest('dist'))
+    .pipe(refresh(lrserver));
+});
+
+// Markup: prod
+gulp.task('html:prod', function(){
+  gulp.src(paths.markup)
+    .pipe(htmlmin())
     .pipe(preprocess({context: { dev: false }}))
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
@@ -104,8 +112,8 @@ gulp.task('html', function(){
 // Watch
 gulp.task('watch', function () {
   gulp.watch(paths.markup, ['html']);
-  gulp.watch(paths.styles, ['styles']);
-  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.styles, ['styles:dev']);
+  gulp.watch(paths.scripts, ['scripts:dev']);
 });
 
 // Serve
@@ -132,6 +140,5 @@ gulp.task('prod', [
   'html',
   'scripts:prod',
   'styles:prod',
-  'serve',
-  'watch'
+  'serve'
 ]);
