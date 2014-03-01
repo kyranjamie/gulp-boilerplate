@@ -21,7 +21,7 @@ livereload = require('connect-livereload');
 var config = {
   lrport : Math.floor(Math.random()*(35999-35300+1)+35300),
   serverport : 4000
-}
+};
 
 
 /**
@@ -29,7 +29,7 @@ var config = {
  */
 var paths = {
   markup  : 'src/**/*.html',
-  scripts : ['src/js/**/*.js', '!src/js/vendor/**'], 
+  scripts : ['src/js/**/*.js', '!src/js/vendor/**'],
   styles  : 'src/scss/**/*.scss',
   images  : 'src/img/'
 };
@@ -46,7 +46,7 @@ server.use(express.static('./dist'));
 
 
 /**
- *  Tasks 
+ *  Tasks
  */
 // Scripts
 gulp.task('scripts', function() {
