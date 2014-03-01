@@ -3,10 +3,10 @@
  */
 var gulp   = require('gulp'),
 sass       = require('gulp-ruby-sass'),
+// watch      = require('gulp-watch'),
+plumber    = require('gulp-plumber'),
 csso       = require('gulp-csso'),
 prefix     = require('gulp-autoprefixer'),
-watch      = require('gulp-watch'),
-plumber    = require('gulp-plumber'),
 htmlmin    = require('gulp-minify-html'),
 uglify     = require('gulp-uglify'),
 concat     = require('gulp-concat'),
@@ -34,8 +34,9 @@ var paths = {
   markup  : 'src/**/*.html',
   scripts : [
     'src/js/**/*.js',
-    '!src/js/vendor/**'
+    '!src/js/lib/**/*.js'
   ],
+  libs    : 'src/js/lib/*.js',
   styles  : 'src/scss/**/*.scss',
   images  : 'src/img/'
 };
@@ -62,6 +63,7 @@ gulp.task('scripts:dev', function() {
     .pipe(refresh(lrserver));
 });
 
+
 // Scripts: prod
 gulp.task('scripts:prod', function() {
   return gulp.src(paths.scripts)
@@ -71,9 +73,15 @@ gulp.task('scripts:prod', function() {
     .pipe(refresh(lrserver));
 });
 
+gulp.task('copylibs', function() {
+  return gulp.src(paths.libs)
+    .pipe(concat('libaries.min.js'))
+    .pipe(uglify());
+});
+
 // Styles: dev
 gulp.task('styles:dev', function () {
-  gulp.src('src/scss/styles.scss')
+  return gulp.src('src/scss/styles.scss')
     .pipe(plumber())
     .pipe(sass({unixNewlines: true}))
     .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
@@ -83,7 +91,7 @@ gulp.task('styles:dev', function () {
 
 // Styles: prod
 gulp.task('styles:prod', function () {
-  gulp.src('src/scss/styles.scss')
+  return gulp.src('src/scss/styles.scss')
     .pipe(plumber())
     .pipe(sass({unixNewlines: true}))
     .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
@@ -94,7 +102,7 @@ gulp.task('styles:prod', function () {
 
 // Markup: dev
 gulp.task('html:dev', function(){
-  gulp.src(paths.markup)
+  return gulp.src(paths.markup)
     .pipe(preprocess({context: { dev: true }}))
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
@@ -102,7 +110,7 @@ gulp.task('html:dev', function(){
 
 // Markup: prod
 gulp.task('html:prod', function(){
-  gulp.src(paths.markup)
+  return gulp.src(paths.markup)
     .pipe(htmlmin())
     .pipe(preprocess({context: { dev: false }}))
     .pipe(gulp.dest('dist'))
@@ -128,7 +136,7 @@ gulp.task('serve', function () {
 
 // Dev
 gulp.task('default', [
-  'html',
+  'html:dev',
   'scripts:dev',
   'styles:dev',
   'serve',
@@ -137,7 +145,7 @@ gulp.task('default', [
 
 // Prod
 gulp.task('prod', [
-  'html',
+  'html:prod',
   'scripts:prod',
   'styles:prod',
   'serve'

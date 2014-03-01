@@ -19,13 +19,15 @@
     "gulp-watch": "~0.5.0",
     "gulp-livereload": "~0.3.1",
     "gulp-uglify": "~0.2.0",
-    "express": "~3.4.8",
-    "connect-livereload": "~0.3.2",
-    "tiny-lr": "0.0.5",
     "gulp-csso": "~0.2.3",
     "gulp-minify-html": "~0.1.0",
     "gulp-autoprefixer": "0.0.6",
     "gulp-plumber": "~0.5.6",
-    "gulp-preprocess": "~1.0.1"
+    "gulp-preprocess": "~1.0.1",
+    "gulp-rename": "~1.1.0",
+    "gulp-concat": "~2.1.7",
+    "connect-livereload": "~0.3.2",
+    "express": "~3.4.8",
+    "tiny-lr": "0.0.5"
   }
 }
