@@ -128,8 +128,8 @@ gulp.task('html:dev', function(){
 // prod
 gulp.task('html:prod', function(){
   return gulp.src(paths.markup)
-    .pipe(htmlmin())
     .pipe(preprocess({context: { dev: false }}))
+    // .pipe(htmlmin())
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
 });
