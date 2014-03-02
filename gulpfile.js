@@ -62,7 +62,7 @@ server.use(express.static('./dist'));
 gulp.task('scripts:dev', function() {
   return gulp.src(paths.scripts)
     .pipe(concat('app.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('dist/assets/js'))
     .pipe(refresh(lrserver));
 });
@@ -71,7 +71,7 @@ gulp.task('scripts:dev', function() {
 gulp.task('scripts:prod', function() {
   return gulp.src(paths.scripts)
     .pipe(concat('app.min.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('dist/assets/js'))
     .pipe(refresh(lrserver));
 });
