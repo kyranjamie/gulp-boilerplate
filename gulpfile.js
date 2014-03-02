@@ -129,7 +129,7 @@ gulp.task('html:dev', function(){
 gulp.task('html:prod', function(){
   return gulp.src(paths.markup)
     .pipe(preprocess({context: { dev: false }}))
-    // .pipe(htmlmin())
+    .pipe(htmlmin())
     .pipe(gulp.dest('dist'))
     .pipe(refresh(lrserver));
 });
