@@ -28,6 +28,8 @@
     "gulp-concat": "~2.1.7",
     "connect-livereload": "~0.3.2",
     "express": "~3.4.8",
-    "tiny-lr": "0.0.5"
+    "tiny-lr": "0.0.5",
+    "gulp-bower-files": "~0.1.11",
+    "gulp-imagemin": "~0.1.5"
   }
 }
