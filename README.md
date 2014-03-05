@@ -3,8 +3,13 @@ Gulp template
 
 Minimal web project boilerplate 
 
-- Uglify
+- Concatenation, Uglify
 - SASS, CSSO, autoprefixr
-- HTML min
-- HTTP Server (express)
+- HTML minification
+- HTTP Server (using express)
 - Livereload
+
+
+## Installation 
+
+`$ npm install && bower install`
