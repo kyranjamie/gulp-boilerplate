@@ -1,6 +1,8 @@
 Gulp template
 ======================
 
+`Very much a work in progress`
+
 Minimal web project boilerplate 
 
 - Concatenation, Uglify
