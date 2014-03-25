@@ -1,0 +1,8 @@
+@mixin overlay ($width, $height) {
+  position: fixed;
+  left: 50%; top: 50%;
+  margin-top: -$height / 2;
+  margin-left: -$width / 2;
+  width: $width; height: $height;
+  overflow: hidden;
+}
