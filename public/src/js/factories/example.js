@@ -1,0 +1,3 @@
+myAppName.factory('Settings', function() {
+
+});

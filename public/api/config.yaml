@@ -1,0 +1,121 @@
+#
+# NOTE
+# When defining an endpoint use RegEx notation
+# The string should begin with a caret: ^
+# The string should end with a: /?$
+# (allows optional trailing slash)
+
+
+#
+# Example endpoints
+- request:
+    url: /hello
+  response:
+    body: ':)'
+- request:
+    url: /give/me/a/smileagain$
+  response:
+    body: >
+      [{"status": "hello world with single quote"}]
+    headers:
+      content-type: application/json
+
+#
+#  Card endpoints
+- request:
+    method: GET
+    url: ^/api/cards$
+  response:
+    headers:
+      content-type: application/json
+    file: get-card-config.json
+    latency : 1
+
+- request:
+    method: GET
+    url: ^/api/settings$
+  response:
+    headers:
+      content-type: application/json
+    file: get-api-settings.json
+    latency : 400
+
+- request:
+    method: GET
+    url: ^/api/card/people/$
+  response:
+    headers:
+      content-type: application/json
+    file: get-api-cards.json
+    latency : 500
+
+#
+# Search request
+- request:
+    method: GET
+    url: ^/api/search/.*/?$
+  response:
+    headers:
+      content-type: application/json
+    file: search_response.json
+    latency : 500
+
+#
+# Post requetss
+- request:
+    method: GET
+    url: ^/api/test$
+
+  response:
+  - status: 201
+    headers:
+      content-type: application/json
+    body: OK
+
+  - status: 201
+    headers:
+      content-stype: application/json
+    body: Still going strong!
+
+  - status: 500
+    headers:
+      content-type: application/json
+    body: OMG!!!
+
+- request:
+    method: POST
+    url: ^/api/test$
+
+  response:
+  - status: 201
+    headers:
+      content-type: application/json
+    body: OK
+
+  - status: 201
+    headers:
+      content-stype: application/json
+    body: Still going strong!
+
+  - status: 500
+    headers:
+      content-type: application/json
+    body: OMG!!!
+
+# - request:
+#     method: POST
+#     url: ^/api/search/?$
+#   response:
+#     headers:
+#       content-type: application/json
+#     file: get-api-search.json
+#     latency : 100
+
+- request:
+    method: POST
+    url: ^/api/settings$
+  response:
+    headers:
+      content-type: application/json
+    file: post-api-settings.json
+    latency : 2000
