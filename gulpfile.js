@@ -5,6 +5,7 @@ var gulp   = require('gulp'),
 newer      = require('gulp-newer'),
 sass       = require('gulp-ruby-sass'),
 watch      = require('gulp-watch'),
+karma      = require('gulp-karma'),
 plumber    = require('gulp-plumber'),
 csso       = require('gulp-csso'),
 gulpif     = require('gulp-if'),
@@ -75,11 +76,9 @@ var paths = {
     ''
   ],
   test: [
-    'public/libs/angular-mocks/angular-mocks.js',
-    'public/dist/js/app.js',
-    'public/test/spec/controllers/*.js',
-    'public/test/spec/factory/*.js',
-    'public/test/spec/directives/*.js'
+    // 'public/libs/angular-mocks/angular-mocks.js',
+    // 'public/dist/js/app.js',
+    'public/test/spec/**/*.js'
   ],
   copy    : [
     'public/src/fonts/**/'
@@ -98,9 +97,6 @@ var banner = ['/**',
   ' * @copyright <%= package.license %>',
   ' */',
   ''].join('\n');
-
-gutil.log('DEV   ', dev);
-gutil.log('PROD  ', prod);
 
 /**
  * Scripts
@@ -287,8 +283,4 @@ gulp.task('build', [
   'scripts',
   'markup',
   'images'
-]);
-
-gulp.task('test', [
-
 ]);
