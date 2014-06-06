@@ -74,6 +74,13 @@ var paths = {
   libs    : [
     ''
   ],
+  test: [
+    'public/libs/angular-mocks/angular-mocks.js',
+    'public/dist/js/app.js',
+    'public/test/spec/controllers/*.js',
+    'public/test/spec/factory/*.js',
+    'public/test/spec/directives/*.js'
+  ],
   copy    : [
     'public/src/fonts/**/'
   ],
@@ -94,7 +101,6 @@ var banner = ['/**',
 
 gutil.log('DEV   ', dev);
 gutil.log('PROD  ', prod);
-
 
 /**
  * Scripts
@@ -136,7 +142,7 @@ gulp.task('styles', function () {
  * @desc Lints all JavaScript files, outputs in console
  */
 gulp.task('lint', function () {
-  gulp.src(paths.scripts)
+  return gulp.src(paths.scripts)
   .pipe(jshint())
   .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -146,7 +152,7 @@ gulp.task('lint', function () {
  * @desc Compiles HTML templates to escaped string
  */
 gulp.task('templates', function () {
-  gulp.src('public/src/tmpl/*.html')
+  return gulp.src('public/src/tmpl/*.html')
     .pipe(templates({
       standalone : true
     }))
@@ -183,29 +189,23 @@ gulp.task('images', function () {
     .pipe(gulp.dest(dest));
 });
 
-
-
-// // Copy
+/**
+ * Copy
+ * @desc Copy necessary assets libraries to `public/dist`
+ *       fonts, libraries, etc
+ */
 gulp.task('copy', function () {
   gulp.src(paths.copy)
     .pipe(gulp.dest('public/dist/fonts'));
 });
 
-gulp.task('copylibs:dev', function() {
+gulp.task('libs', function() {
   var dest = 'public/dist/js';
   return gulp.src(paths.libs)
     .pipe(newer(dest))
+    .pipe(gulpif(prod, uglify()))
     .pipe(gulp.dest(dest));
 });
-
-gulp.task('copylibs:prod', function() {
-  return gulp.src(paths.libs)
-    .pipe(concat('lib.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('public/dist/js'));
-});
-
-
 
 /**
  * Watch
@@ -213,11 +213,11 @@ gulp.task('copylibs:prod', function() {
  */
 gulp.task('watch', function () {
   gulp.watch(paths.markup, ['html']);
+  gulp.watch(paths.images, ['images']);
   gulp.watch(paths.styles.src, ['styles']);
   gulp.watch(paths.scripts, ['scripts']);
-  gulp.watch(paths.templates, ['scripts:dev']);
+  gulp.watch(paths.templates, ['scripts']);
 });
-
 
 /**
  *  Web servers
@@ -255,6 +255,21 @@ gulp.task('clean', function () {
 });
 
 /**
+ * Tests
+ * @desc Load libraries and test dependencies
+ */
+gulp.task('test', function() {
+  return gulp.src(paths.libs.concat(paths.test))
+    .pipe(karma({
+      configFile: 'public/test/karma.conf.js',
+      action: 'watch'
+    }))
+    .on('error', function(err) {
+      throw err;
+    });
+});
+
+/**
  *  Tasks
  */
 gulp.task('default', [
@@ -272,4 +287,8 @@ gulp.task('build', [
   'scripts',
   'markup',
   'images'
+]);
+
+gulp.task('test', [
+
 ]);
