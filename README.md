@@ -1,22 +1,20 @@
 Gulp template
 ======================
-Minimal web project boilerplate 
-
-`Very much a work in progress`
-
-## TODO
-#### SCSS
-- vertical rhythm variables (compass?)
-- default styles (tables, buttons, dropdown, inputs etc)
+Fully featured web app boilerplate 
 
 ## Features
 - Concatenation, Uglify
-- SASS, CSSO, autoprefixr
 - HTML minification
+- SASS, CSSO, Autoprefixr
 - HTTP Server (using express)
 - Livereload
 
+## Installation & Prerequisites
+Stubby
+`$ npm install -g stubby`
 
-## Installation 
+SASS
+`$ gem install sass`
 
+Install dependencies
 `$ npm install && bower install`
